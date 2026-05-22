@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react"
+import { useState, useEffect, useCallback, useRef, useMemo, createContext, useContext } from "react"
 import Image from "next/image"
 import ProfileCardAnimation from "./profile-card-animation"
 import RecruitingFlowAnimation from "./recruiting-flow-animation"
@@ -11,6 +11,150 @@ const LOGO_WHITE =
   "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20horizontal%20-%20white%20%281%29-w4MXPtuKK8TZkVh7B4oOWkRyeA1Mgy.png"
 const LOGO_BLUE =
   "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20horizontal%20-%20blue%20%281%29-gzr0AeM5R5vdBKUShZHk06hiM63QdC.png"
+
+/* ───────────── TRANSLATIONS & LANG CONTEXT ───────────── */
+
+type Lang = "es" | "pt" | "en"
+
+const TRANSLATIONS = {
+  es: {
+    navHint: "navegá con las flechas",
+    introLine1: "Lanzamientos",
+    introLine2: "de Producto",
+    funcIA1: "Próximas funcionalidades",
+    funcIA2: "con IA",
+    proxGrandes1: "Próximos grandes",
+    proxGrandes2: "lanzamientos",
+    otrosProx1: "Otros próximos",
+    otrosProx2: "lanzamientos",
+    gracias: "¡GRACIAS!",
+    sammy: "Sammy 2.0",
+    insights: "Insights 2.0",
+    legajo: "Legajo Digital",
+    ciclo: "Ciclo de Vida",
+    payroll: "Payroll",
+    certificados: "Certificados de cursos",
+    segmentacion: "Segmentación\nAdmin y Usuario",
+    themes: "Themes",
+    crearCursoIA: "Crear curso con IA",
+    atsAI: "Recomendaciones de perfil y resúmenes con IA",
+    postAI: "Mejorar publicaciones con IA",
+    autoShiftIA: "Recomendación automática de turnos",
+    timeTrackingIA: "Insights automáticos sobre horas extra",
+    resumenObjetivosIA: "Generar resumen de Objetivos con IA",
+    calibration: "Calibración de Performance",
+    voicenoteCEO: "Voicenote CEO",
+    sharePosts: "Compartir publicaciones del Feed",
+    chatGallery: "Galería de archivos, links e imágenes",
+    timeTrackingPerms: "Permisos segmentados para Control Horario",
+    preboarding: "Preboarding",
+    universalSearch: "Búsqueda Universal",
+    renamePDFs: "Renombrar y separar PDFs en Humand",
+    badgeLearning: "Learning",
+    badgeReclutamiento: "Reclutamiento",
+    badgeFeedGrupos: "Feed & Grupos",
+    badgeTurnos: "Turnos laborales",
+    badgeControlHorario: "Control Horario",
+    badgePerfGoals: "Performance & Goals",
+    badgeChats: "Chats",
+    badgeOnboarding: "Onboarding",
+    badgeBusqueda: "Búsqueda Universal",
+    badgeDocumentos: "Documentos",
+  },
+  pt: {
+    navHint: "navegue com as setas",
+    introLine1: "Lançamentos",
+    introLine2: "de Produto",
+    funcIA1: "Próximas funcionalidades",
+    funcIA2: "com IA",
+    proxGrandes1: "Próximos grandes",
+    proxGrandes2: "lançamentos",
+    otrosProx1: "Outros próximos",
+    otrosProx2: "lançamentos",
+    gracias: "OBRIGADO!",
+    sammy: "Sammy 2.0",
+    insights: "Insights 2.0",
+    legajo: "Arquivo Digital de Funcionários",
+    ciclo: "Ciclo de Vida",
+    payroll: "Folha de Pagamento",
+    certificados: "Certificados de cursos",
+    segmentacion: "Segmentação\nAdmin e Usuário",
+    themes: "Temas",
+    crearCursoIA: "Criar curso com IA",
+    atsAI: "Recomendações de perfil e resumos com IA",
+    postAI: "Melhorar publicações com IA",
+    autoShiftIA: "Recomendação automática de turnos",
+    timeTrackingIA: "Insights automáticos sobre horas extras",
+    resumenObjetivosIA: "Gerar resumo de Metas com IA",
+    calibration: "Calibração de Performance",
+    voicenoteCEO: "Voicenote CEO",
+    sharePosts: "Compartilhar publicações do Feed",
+    chatGallery: "Galeria de arquivos, links e imagens",
+    timeTrackingPerms: "Permissões segmentadas para Controle de Presença",
+    preboarding: "Preboarding",
+    universalSearch: "Busca Universal",
+    renamePDFs: "Renomear e separar PDFs no Humand",
+    badgeLearning: "Aprendizado",
+    badgeReclutamiento: "Recrutamento",
+    badgeFeedGrupos: "Feed & Grupos",
+    badgeTurnos: "Turnos de trabalho",
+    badgeControlHorario: "Controle de Presença",
+    badgePerfGoals: "Performance & Metas",
+    badgeChats: "Chats",
+    badgeOnboarding: "Onboarding",
+    badgeBusqueda: "Busca Universal",
+    badgeDocumentos: "Documentos",
+  },
+  en: {
+    navHint: "navigate with arrows",
+    introLine1: "Product",
+    introLine2: "Launches",
+    funcIA1: "Upcoming AI",
+    funcIA2: "Features",
+    proxGrandes1: "Upcoming Major",
+    proxGrandes2: "Launches",
+    otrosProx1: "Other Upcoming",
+    otrosProx2: "Launches",
+    gracias: "THANK YOU!",
+    sammy: "Sammy 2.0",
+    insights: "Insights 2.0",
+    legajo: "Digital Employee File",
+    ciclo: "Employee Lifecycle",
+    payroll: "Payroll",
+    certificados: "Course Certificates",
+    segmentacion: "Admin & User\nSegmentation",
+    themes: "Themes",
+    crearCursoIA: "Create Course with AI",
+    atsAI: "Profile Recommendations & Summaries with AI",
+    postAI: "Improve Posts with AI",
+    autoShiftIA: "Smart Shift Recommendations",
+    timeTrackingIA: "Automated Overtime Insights",
+    resumenObjetivosIA: "AI-Generated Goals Summary",
+    calibration: "Performance Calibration",
+    voicenoteCEO: "CEO Voicenote",
+    sharePosts: "Share Feed Posts",
+    chatGallery: "Files, Links & Images Gallery",
+    timeTrackingPerms: "Segmented Time Tracking Permissions",
+    preboarding: "Preboarding",
+    universalSearch: "Universal Search",
+    renamePDFs: "Rename & Split PDFs in Humand",
+    badgeLearning: "Learning",
+    badgeReclutamiento: "Recruiting",
+    badgeFeedGrupos: "Feed & Groups",
+    badgeTurnos: "Work Shifts",
+    badgeControlHorario: "Time Tracking",
+    badgePerfGoals: "Performance & Goals",
+    badgeChats: "Chats",
+    badgeOnboarding: "Onboarding",
+    badgeBusqueda: "Universal Search",
+    badgeDocumentos: "Documents",
+  },
+} as const
+
+const LangContext = createContext<Lang>("es")
+function useLang() { return useContext(LangContext) }
+function useT() { return TRANSLATIONS[useLang()] }
+
 
 /* ───────────── ANIMATION HOOK ───────────── */
 
@@ -166,6 +310,7 @@ function FloatingIcons({ active, product }: { active: boolean; product: string }
 /* ───────────── SLIDE 1: INTRO ───────────── */
 
 function SlideIntro({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 5)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
@@ -182,7 +327,7 @@ function SlideIntro({ active }: { active: boolean }) {
           className="text-balance text-[clamp(2.2rem,6cqw,4.5rem)] font-black leading-[1] tracking-tight text-white"
           style={{ animation: active ? "float-slow 4s ease-in-out infinite" : "none" }}
         >
-          Lanzamientos<br />de Producto
+          {t.introLine1}<br />{t.introLine2}
         </h1>
       </An>
       <An show={v[2]} delay={250} className="mt-5">
@@ -197,7 +342,7 @@ function SlideIntro({ active }: { active: boolean }) {
         <div className="flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-sm"
           style={{ animation: active ? "float-slow 3s ease-in-out infinite" : "none" }}>
           <kbd className="flex items-center justify-center rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-xs font-semibold text-white">←</kbd>
-          <span className="text-xs font-medium text-white/70 whitespace-nowrap">navegá con las flechas</span>
+          <span className="text-xs font-medium text-white/70 whitespace-nowrap">{t.navHint}</span>
           <kbd className="flex items-center justify-center rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-xs font-semibold text-white">→</kbd>
         </div>
       </An>
@@ -607,6 +752,7 @@ function S06_Carousel1({ active }: { active: boolean }) {
 }
 
 function SlideTransition({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 4, 600)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
@@ -618,12 +764,12 @@ function SlideTransition({ active }: { active: boolean }) {
       <div className="flex flex-col items-center">
         <An show={v[0]} from="bottom" delay={0}>
           <h1 className="text-[clamp(2.2rem,6cqw,4.5rem)] font-black leading-[1] tracking-tight text-white">
-            Próximos grandes
+            {t.proxGrandes1}
           </h1>
         </An>
         <An show={v[1]} delay={200}>
           <h1 className="text-[clamp(2.2rem,6cqw,4.5rem)] font-black leading-[1] tracking-tight text-white mt-2">
-            lanzamientos
+            {t.proxGrandes2}
           </h1>
         </An>
       </div>
@@ -638,13 +784,14 @@ function SlideTransition({ active }: { active: boolean }) {
 }
 
 function S07_Sammy({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
       <An show={v[0]} delay={120} className="mt-3">
         <h2 className="text-[clamp(2rem,5.5cqw,3.5rem)] font-black leading-[1.05] tracking-tight text-white">
-          Sammy 2.0
+          {t.sammy}
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
@@ -665,13 +812,14 @@ function S07_Sammy({ active }: { active: boolean }) {
   )
 }
 function S_Insights({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
       <An show={v[0]} delay={120} className="mt-3">
         <h2 className="text-[clamp(2rem,5.5cqw,3.5rem)] font-black leading-[1.05] tracking-tight text-white">
-          Insights 2.0
+          {t.insights}
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
@@ -690,13 +838,14 @@ function S_Insights({ active }: { active: boolean }) {
   )
 }
 function S08_Legajo({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
       <An show={v[0]} delay={120} className="mt-3">
         <h2 className="text-[clamp(2rem,5.5cqw,3.5rem)] font-black leading-[1.05] tracking-tight text-white">
-          Legajo Digital
+          {t.legajo}
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
@@ -715,13 +864,14 @@ function S08_Legajo({ active }: { active: boolean }) {
   )
 }
 function S09_Ciclo({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
       <An show={v[0]} delay={120} className="mt-3">
         <h2 className="text-[clamp(2rem,5.5cqw,3.5rem)] font-black leading-[1.05] tracking-tight text-white">
-          Ciclo de Vida
+          {t.ciclo}
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
@@ -740,13 +890,14 @@ function S09_Ciclo({ active }: { active: boolean }) {
   )
 }
 function S10_Payroll({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
       <An show={v[0]} delay={120} className="mt-3">
         <h2 className="text-[clamp(2rem,5.5cqw,3.5rem)] font-black leading-[1.05] tracking-tight text-white">
-          Payroll
+          {t.payroll}
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
@@ -790,13 +941,14 @@ function S12_Microloans({ active }: { active: boolean }) {
   )
 }
 function S_CertificadosCursos({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
       <An show={v[0]} delay={120} className="mt-3">
         <h2 className="text-[clamp(2rem,5.5cqw,3.5rem)] font-black leading-[1.05] tracking-tight text-white">
-          Certificados de cursos
+          {t.certificados}
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
@@ -815,13 +967,14 @@ function S_CertificadosCursos({ active }: { active: boolean }) {
   )
 }
 function S11_Segmentacion({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
       <An show={v[0]} delay={120} className="mt-3">
         <h2 className="text-[clamp(2rem,5.5cqw,3.5rem)] font-black leading-[1.05] tracking-tight text-white whitespace-pre-line">
-          {"Segmentación\nAdmin y Usuario"}
+          {t.segmentacion}
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
@@ -841,13 +994,14 @@ function S11_Segmentacion({ active }: { active: boolean }) {
 }
 
 function S_Themes({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
       <An show={v[0]} delay={120} className="mt-3">
         <h2 className="text-[clamp(2rem,5.5cqw,3.5rem)] font-black leading-[1.05] tracking-tight text-white">
-          Themes
+          {t.themes}
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
@@ -884,6 +1038,7 @@ function S13_Carousel2({ active }: { active: boolean }) {
 }
 
 function SlideFuncionalidadesIA({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 4, 600)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
@@ -918,12 +1073,12 @@ function SlideFuncionalidadesIA({ active }: { active: boolean }) {
       <div className="flex flex-col items-center">
         <An show={v[1]} from="bottom" delay={200}>
           <h1 className="text-[clamp(2.2rem,6cqw,4.5rem)] font-black leading-[1] tracking-tight text-white">
-            Próximas funcionalidades
+            {t.funcIA1}
           </h1>
         </An>
         <An show={v[2]} delay={400}>
           <h1 className="text-[clamp(2.2rem,6cqw,4.5rem)] font-black leading-[1] tracking-tight text-white mt-2">
-            con IA
+            {t.funcIA2}
           </h1>
         </An>
       </div>
@@ -935,25 +1090,32 @@ function SlideFuncionalidadesIA({ active }: { active: boolean }) {
 }
 
 function S_CrearCursoIA({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Crear curso con IA" image="/createcourse.png" badge="Learning" />
+  const t = useT()
+  return <CardSlide active={active} title={t.crearCursoIA} image="/createcourse.png" badge={t.badgeLearning} />
 }
 function S_AtsAI({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Recomendaciones de perfil y resúmenes con IA" image="/atsAI.png" badge="Reclutamiento" />
+  const t = useT()
+  return <CardSlide active={active} title={t.atsAI} image="/atsAI.png" badge={t.badgeReclutamiento} />
 }
 function S_PostAI({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Mejorar publicaciones con IA" image="/postAI.png" badge="Feed & Grupos" />
+  const t = useT()
+  return <CardSlide active={active} title={t.postAI} image="/postAI.png" badge={t.badgeFeedGrupos} />
 }
 function S_AutoShiftIA({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Recomendación automática de turnos" image="/autoshift-ai.png" badge="Turnos laborales" />
+  const t = useT()
+  return <CardSlide active={active} title={t.autoShiftIA} image="/autoshift-ai.png" badge={t.badgeTurnos} />
 }
 function S_TimeTrackingInsightsIA({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Insights automáticos sobre horas extra" image="/autotimetrackingAI.png" badge="Control Horario" />
+  const t = useT()
+  return <CardSlide active={active} title={t.timeTrackingIA} image="/autotimetrackingAI.png" badge={t.badgeControlHorario} />
 }
 function S_ResumenObjetivosIA({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Generar resumen de Objetivos con IA" image="/autosummary-goals-ai.png" badge="Performance & Goals" />
+  const t = useT()
+  return <CardSlide active={active} title={t.resumenObjetivosIA} image="/autosummary-goals-ai.png" badge={t.badgePerfGoals} />
 }
 
 function SlideOtrosLanzamientos({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 4, 600)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
@@ -965,12 +1127,12 @@ function SlideOtrosLanzamientos({ active }: { active: boolean }) {
       <div className="flex flex-col items-center">
         <An show={v[0]} from="bottom" delay={0}>
           <h1 className="text-[clamp(2.2rem,6cqw,4.5rem)] font-black leading-[1] tracking-tight text-white">
-            Otros próximos
+            {t.otrosProx1}
           </h1>
         </An>
         <An show={v[1]} delay={200}>
           <h1 className="text-[clamp(2.2rem,6cqw,4.5rem)] font-black leading-[1] tracking-tight text-white mt-2">
-            lanzamientos
+            {t.proxGrandes2}
           </h1>
         </An>
       </div>
@@ -1018,37 +1180,45 @@ function CardSlide({ active, title, image, badge, badgeBg = "#E8EBFA", badgeColo
 }
 
 function S_Calibration({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Calibración de Performance" image="/calibration.png" badge="Performance & Goals" />
+  const t = useT()
+  return <CardSlide active={active} title={t.calibration} image="/calibration.png" badge={t.badgePerfGoals} />
 }
 function S_CareersSite({ active }: { active: boolean }) {
   return <CardSlide active={active} title="Careers Site" image="/careers-site.png" badge="Reclutamiento" />
 }
 function S_VoicenoteCEO({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Voicenote CEO" image="/voicenote-ceo.png" badge="Chats" />
+  const t = useT()
+  return <CardSlide active={active} title={t.voicenoteCEO} image="/voicenote-ceo.png" badge={t.badgeChats} />
 }
 function S_SharePosts({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Compartir publicaciones del Feed" image="/share-posts.png" badge="Feed & Grupos" />
+  const t = useT()
+  return <CardSlide active={active} title={t.sharePosts} image="/share-posts.png" badge={t.badgeFeedGrupos} />
 }
 function S_NotifBubble({ active }: { active: boolean }) {
   return <CardSlide active={active} title="Bubble para notificaciones" image="/notif-bubble.png" badge="Gestión de Servicios" />
 }
 function S_ChatGallery({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Galería de archivos, links e imágenes" image="/chat-gallery.png" badge="Chats" />
+  const t = useT()
+  return <CardSlide active={active} title={t.chatGallery} image="/chat-gallery.png" badge={t.badgeChats} />
 }
 function S_Certificates({ active }: { active: boolean }) {
   return <CardSlide active={active} title="Gestión de certificados de finalización" image="/certificates.png" badge="Learning" />
 }
 function S_TimeTrackingPerms({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Permisos segmentados para Control Horario" image="/time-tracking-perms.jpg" badge="Control Horario" />
+  const t = useT()
+  return <CardSlide active={active} title={t.timeTrackingPerms} image="/time-tracking-perms.jpg" badge={t.badgeControlHorario} />
 }
 function S_Preboarding({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Preboarding" image="/preboardingspace.png" badge="Onboarding" />
+  const t = useT()
+  return <CardSlide active={active} title={t.preboarding} image="/preboardingspace.png" badge={t.badgeOnboarding} />
 }
 function S_UniversalSearch({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Búsqueda Universal" image="/universal-search.png" badge="Búsqueda Universal" />
+  const t = useT()
+  return <CardSlide active={active} title={t.universalSearch} image="/universal-search.png" badge={t.badgeBusqueda} />
 }
 function S_RenameSplitPDFs({ active }: { active: boolean }) {
-  return <CardSlide active={active} title="Renombrar y separar PDFs en Humand" image="/rename-split-pdfs.png" badge="Documentos" />
+  const t = useT()
+  return <CardSlide active={active} title={t.renamePDFs} image="/rename-split-pdfs.png" badge={t.badgeDocumentos} />
 }
 
 /* ───────────── Q2 SUMMARY CAROUSEL ───────────── */
@@ -1151,6 +1321,7 @@ function S_Validacion({ active }: { active: boolean }) {
 }
 
 function S_Thanks({ active }: { active: boolean }) {
+  const t = useT()
   const v = useStagger(active, 2, 400)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
@@ -1160,7 +1331,7 @@ function S_Thanks({ active }: { active: boolean }) {
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[200px] w-[200px] rounded-full border border-white/[0.10]" />
       <An show={v[0]} from="scale" delay={0}>
         <h1 className="text-[clamp(3rem,10cqw,7rem)] font-black leading-[1] tracking-tight text-white">
-          ¡GRACIAS!
+          {t.gracias}
         </h1>
       </An>
       <An show={v[1]} delay={300} className="mt-8">
@@ -1208,6 +1379,7 @@ export function SlideDeck() {
   const [current, setCurrent] = useState(0)
   const [dir, setDir] = useState<"next" | "prev">("next")
   const [locked, setLocked] = useState(false)
+  const [lang, setLang] = useState<Lang>("es")
 
   const total = SLIDES.length
 
@@ -1259,12 +1431,25 @@ export function SlideDeck() {
   const SlideComponent = SLIDES[current].component
 
   return (
+    <LangContext.Provider value={lang}>
     <div
       className={`relative h-dvh w-full overflow-hidden select-none transition-colors duration-500 ${SLIDES[current].bg}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       style={{ containerType: "size" }}
     >
+      {/* Language Switcher */}
+      <div className="absolute top-4 right-20 z-50 flex gap-1 rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur-sm">
+        {(["es", "pt", "en"] as Lang[]).map((l) => (
+          <button
+            key={l}
+            onClick={(e) => { e.stopPropagation(); setLang(l) }}
+            className={`rounded-full px-3 py-1 text-xs font-semibold transition-all ${lang === l ? "bg-white text-[#213478]" : "text-white/70 hover:text-white"}`}
+          >
+            {l === "es" ? "ES" : l === "pt" ? "PT" : "EN"}
+          </button>
+        ))}
+      </div>
       {/* Click zones */}
       <button onClick={prev} className="absolute top-0 left-0 z-30 h-full w-[15%] bg-transparent focus:outline-none" aria-label="Previous slide" disabled={current === 0} />
       <button onClick={next} className="absolute top-0 right-0 z-30 h-full w-[15%] bg-transparent focus:outline-none" aria-label="Next slide" disabled={current === total - 1} />
@@ -1298,5 +1483,6 @@ export function SlideDeck() {
         />
       </div>
     </div>
+    </LangContext.Provider>
   )
 }
