@@ -1174,16 +1174,6 @@ function S_Thanks({ active }: { active: boolean }) {
 
 const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; bg: string }[] = [
   { component: SlideIntro, bg: "bg-[#213478]" },       // 01 Intro
-  { component: SlideHumand5Min, bg: "bg-[#213478]" },  // 02 Humand en 5 Minutos
-  { component: S_Shifts, bg: "bg-[#213478]" },         // Turnos laborales
-  { component: S03_Onboarding, bg: "bg-[#213478]" },   // Onboarding 2.0
-  { component: S05_ATS, bg: "bg-[#213478]" },          // Reclutamiento
-  { component: S04_Workflows, bg: "bg-[#213478]" },    // Workflows
-  { component: S02_Roles, bg: "bg-[#213478]" },        // Roles y Permisos
-  { component: S_Chats, bg: "bg-[#213478]" },          // Chats 2.0
-  { component: S_Llamadas, bg: "bg-[#213478]" },       // Llamadas
-  { component: S_Prode, bg: "bg-[#213478]" },          // PRODE
-  { component: S06_Carousel1, bg: "bg-[#213478]" },    // Carousel 1
   { component: SlideFuncionalidadesIA, bg: "bg-[#213478]" }, // 12 Funcionalidades con IA
   { component: S07_Sammy, bg: "bg-[#213478]" },        // Sammy 2.0
   { component: S_CrearCursoIA, bg: "bg-[#213478]" },   // 13 Crear curso con IA
@@ -1201,20 +1191,14 @@ const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; b
   { component: S_CertificadosCursos, bg: "bg-[#213478]" }, // Certificados de cursos
   { component: S11_Segmentacion, bg: "bg-[#213478]" }, // 11 Segmentación
   { component: S_Themes, bg: "bg-[#213478]" },         // Themes
-  { component: S13_Carousel2, bg: "bg-[#213478]" },    // 13 Carousel 2
   { component: SlideOtrosLanzamientos, bg: "bg-[#213478]" }, // Otros próximos lanzamientos
   { component: S_Calibration, bg: "bg-[#213478]" },         // Performance Calibration
-  { component: S_CareersSite, bg: "bg-[#213478]" },         // Careers Site
   { component: S_SharePosts, bg: "bg-[#213478]" },          // Share Feed Posts
-  { component: S_NotifBubble, bg: "bg-[#213478]" },         // Bubble para notificaciones
   { component: S_ChatGallery, bg: "bg-[#213478]" },         // Shared Files & Gallery
   { component: S_TimeTrackingPerms, bg: "bg-[#213478]" },   // Time Tracking Permissions
   { component: S_Preboarding, bg: "bg-[#213478]" },         // Preboarding
   { component: S_UniversalSearch, bg: "bg-[#213478]" },     // Universal Search
   { component: S_RenameSplitPDFs, bg: "bg-[#213478]" },     // Rename & Split PDFs
-  { component: S_Q2Summary, bg: "bg-[#213478]" },            // Resumen Q2
-  { component: S_Validacion, bg: "bg-[#213478]" },            // Espacio de validación
-  { component: S12_Microloans, bg: "bg-[#213478]" },          // Microloans
   { component: S_Thanks, bg: "bg-[#213478]" },                // ¡GRACIAS!
 ]
 
