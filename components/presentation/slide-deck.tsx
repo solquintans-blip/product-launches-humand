@@ -60,6 +60,8 @@ const TRANSLATIONS = {
     badgeOnboarding: "Onboarding",
     badgeBusqueda: "Búsqueda Universal",
     badgeDocumentos: "Documentos",
+    badgeServiciosMgmt: "Gestión de Servicios",
+    smPreload: "Pre-cargar campos desde un archivo",
   },
   pt: {
     navHint: "navegue com as setas",
@@ -104,6 +106,8 @@ const TRANSLATIONS = {
     badgeOnboarding: "Onboarding",
     badgeBusqueda: "Busca Universal",
     badgeDocumentos: "Documentos",
+    badgeServiciosMgmt: "Gerenciamento de serviços",
+    smPreload: "Pré-carregar campos de um arquivo",
   },
   en: {
     navHint: "navigate with arrows",
@@ -148,6 +152,8 @@ const TRANSLATIONS = {
     badgeOnboarding: "Onboarding",
     badgeBusqueda: "Universal Search",
     badgeDocumentos: "Documents",
+    badgeServiciosMgmt: "Service Management",
+    smPreload: "Pre-load fields from a file",
   },
 } as const
 
@@ -1348,6 +1354,11 @@ function S_Thanks({ active }: { active: boolean }) {
   )
 }
 
+function S_SMPreload({ active }: { active: boolean }) {
+  const t = useT()
+  return <CardSlide active={active} title={t.smPreload} image="/SM-Card.png" badge={t.badgeServiciosMgmt} />
+}
+
 /* ───────────── SLIDES REGISTRY ───────────── */
 
 const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; bg: string }[] = [
@@ -1377,6 +1388,7 @@ const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; b
   { component: S_Preboarding, bg: "bg-[#213478]" },         // Preboarding
   { component: S_UniversalSearch, bg: "bg-[#213478]" },     // Universal Search
   { component: S_RenameSplitPDFs, bg: "bg-[#213478]" },     // Rename & Split PDFs
+  { component: S_SMPreload, bg: "bg-[#213478]" },           // Gestión de Servicios
   { component: S_Thanks, bg: "bg-[#213478]" },                // ¡GRACIAS!
 ]
 
