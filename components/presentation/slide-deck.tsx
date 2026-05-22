@@ -52,7 +52,7 @@ const TRANSLATIONS = {
     renamePDFs: "Renombrar y separar PDFs en Humand",
     badgeLearning: "Aprendizaje",
     badgeReclutamiento: "Reclutamiento",
-    badgeFeedGrupos: "Muro y Grupos",
+    badgeFeedGrupos: "Muro & Grupos",
     badgeTurnos: "Control de Asistencia",
     badgeControlHorario: "Control de Asistencia",
     badgePerfGoals: "Desempeño",
