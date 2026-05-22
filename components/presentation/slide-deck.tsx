@@ -79,7 +79,7 @@ const TRANSLATIONS = {
     payroll: "Folha de Pagamento",
     certificados: "Certificados de cursos",
     segmentacion: "Segmentação\nAdmin e Usuário",
-    themes: "Temas",
+    themes: "Themes",
     crearCursoIA: "Criar curso com IA",
     atsAI: "Recomendações de perfil e resumos com IA",
     postAI: "Melhorar publicações com IA",
