@@ -1382,13 +1382,13 @@ const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; b
   { component: S_Themes, bg: "bg-[#213478]" },         // Themes
   { component: SlideOtrosLanzamientos, bg: "bg-[#213478]" }, // Otros próximos lanzamientos
   { component: S_Calibration, bg: "bg-[#213478]" },         // Performance Calibration
+  { component: S_SMPreload, bg: "bg-[#213478]" },           // Gestión de Servicios
   { component: S_SharePosts, bg: "bg-[#213478]" },          // Share Feed Posts
   { component: S_ChatGallery, bg: "bg-[#213478]" },         // Shared Files & Gallery
   { component: S_TimeTrackingPerms, bg: "bg-[#213478]" },   // Time Tracking Permissions
   { component: S_Preboarding, bg: "bg-[#213478]" },         // Preboarding
   { component: S_UniversalSearch, bg: "bg-[#213478]" },     // Universal Search
   { component: S_RenameSplitPDFs, bg: "bg-[#213478]" },     // Rename & Split PDFs
-  { component: S_SMPreload, bg: "bg-[#213478]" },           // Gestión de Servicios
   { component: S_Thanks, bg: "bg-[#213478]" },                // ¡GRACIAS!
 ]
 
