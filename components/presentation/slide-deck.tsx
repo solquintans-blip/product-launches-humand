@@ -18,7 +18,7 @@ type Lang = "es" | "pt" | "en"
 
 const TRANSLATIONS = {
   es: {
-    navHint: "navegá con las flechas",
+    navHint: "Navega con las flechas",
     introLine1: "Lanzamientos",
     introLine2: "de Producto",
     funcIA1: "Próximas funcionalidades",
@@ -1372,6 +1372,7 @@ const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; b
   { component: S_TimeTrackingInsightsIA, bg: "bg-[#213478]" }, // Insights automáticos horas extra
   { component: S_AutoShiftIA, bg: "bg-[#213478]" },    // 14 Recomendación automática de turnos
   { component: S_ResumenObjetivosIA, bg: "bg-[#213478]" }, // 15 Resumen Objetivos con IA
+  { component: S_SMPreload, bg: "bg-[#213478]" },           // Gestión de Servicios
   { component: SlideTransition, bg: "bg-[#213478]" },  // 15 Próximos grandes lanzamientos
   { component: S_Insights, bg: "bg-[#213478]" },       // 09 Insights 2.0
   { component: S08_Legajo, bg: "bg-[#213478]" },       // 10 Legajo Digital
@@ -1382,7 +1383,6 @@ const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; b
   { component: S_Themes, bg: "bg-[#213478]" },         // Themes
   { component: SlideOtrosLanzamientos, bg: "bg-[#213478]" }, // Otros próximos lanzamientos
   { component: S_Calibration, bg: "bg-[#213478]" },         // Performance Calibration
-  { component: S_SMPreload, bg: "bg-[#213478]" },           // Gestión de Servicios
   { component: S_SharePosts, bg: "bg-[#213478]" },          // Share Feed Posts
   { component: S_ChatGallery, bg: "bg-[#213478]" },         // Shared Files & Gallery
   { component: S_TimeTrackingPerms, bg: "bg-[#213478]" },   // Time Tracking Permissions
