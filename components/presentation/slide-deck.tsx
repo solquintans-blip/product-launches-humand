@@ -878,6 +878,7 @@ function S08_Legajo({ active }: { active: boolean }) {
 }
 function S09_Ciclo({ active }: { active: boolean }) {
   const t = useT()
+  const lang = useLang()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
@@ -889,13 +890,19 @@ function S09_Ciclo({ active }: { active: boolean }) {
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
         <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10.5" }}>
-          {active && (
+          {lang === "es" && active && (
             <ResponsiveIframe
               src="/lifecycle-animation.html"
               designW={820}
               designH={540}
               title="Ciclo de Vida Animation"
             />
+          )}
+          {lang === "pt" && (
+            <Image src="/lifecycle-pt.png" alt="Lifecycle PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
+          )}
+          {lang === "en" && (
+            <Image src="/lifecycle-en.png" alt="Lifecycle EN" width={820} height={540} className="w-full h-auto block rounded-xl" />
           )}
         </div>
       </An>
