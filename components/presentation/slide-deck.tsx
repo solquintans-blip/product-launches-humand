@@ -1013,7 +1013,7 @@ function S11_Segmentacion({ active }: { active: boolean }) {
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
-        <div className="relative w-full">
+        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10.5" }}>
           {lang === "es" && active && (
             <ResponsiveIframe
               src="/ryp-segmentado-animation.html"
