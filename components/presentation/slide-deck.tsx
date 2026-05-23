@@ -969,6 +969,7 @@ function S12_Microloans({ active }: { active: boolean }) {
 }
 function S_CertificadosCursos({ active }: { active: boolean }) {
   const t = useT()
+  const lang = useLang()
   const v = useStagger(active, 2)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
@@ -980,13 +981,19 @@ function S_CertificadosCursos({ active }: { active: boolean }) {
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
         <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10.5" }}>
-          {active && (
+          {lang === "es" && active && (
             <ResponsiveIframe
               src="/certificados-animation.html"
               designW={820}
               designH={540}
               title="Certificados de cursos Animation"
             />
+          )}
+          {lang === "pt" && (
+            <Image src="/course-pt.png" alt="Certificados PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
+          )}
+          {lang === "en" && (
+            <Image src="/course-en.png" alt="Certificados EN" width={820} height={540} className="w-full h-auto block rounded-xl" />
           )}
         </div>
       </An>
