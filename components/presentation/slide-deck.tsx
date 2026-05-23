@@ -1013,7 +1013,7 @@ function S11_Segmentacion({ active }: { active: boolean }) {
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10.5" }}>
+        <div className="relative w-full">
           {lang === "es" && active && (
             <ResponsiveIframe
               src="/ryp-segmentado-animation.html"
@@ -1023,10 +1023,10 @@ function S11_Segmentacion({ active }: { active: boolean }) {
             />
           )}
           {lang === "pt" && (
-            <Image src="/segmen-pt.png" alt="Segmentación PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/segmen-pt1.png" alt="Segmentación PT" width={820} height={820} className="w-full h-auto block rounded-xl object-contain max-h-[60dvh]" />
           )}
           {lang === "en" && (
-            <Image src="/segmen-en.png" alt="Segmentación EN" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/segmen-en1.png" alt="Segmentación EN" width={820} height={820} className="w-full h-auto block rounded-xl object-contain max-h-[60dvh]" />
           )}
         </div>
       </An>
