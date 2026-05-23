@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     smPreload: "Pre-cargar campos desde un archivo",
   },
   pt: {
-    navHint: "navegue com as setas",
+    navHint: "Navegue com as setas",
     introLine1: "Lançamentos",
     introLine2: "de Produto",
     funcIA1: "Próximas funcionalidades",
@@ -110,7 +110,7 @@ const TRANSLATIONS = {
     smPreload: "Pré-carregar campos de um arquivo",
   },
   en: {
-    navHint: "navigate with arrows",
+    navHint: "Navigate with arrows",
     introLine1: "Product",
     introLine2: "Launches",
     funcIA1: "Upcoming AI",
