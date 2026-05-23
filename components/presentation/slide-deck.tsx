@@ -1024,12 +1024,12 @@ function S11_Segmentacion({ active }: { active: boolean }) {
           )}
           {lang === "pt" && (
             <div className="w-full rounded-2xl overflow-hidden border-2 border-white/15 shadow-2xl shadow-black/20">
-              <Image src="/segmen-pt1.png" alt="Segmentación PT" width={820} height={820} className="w-full h-auto block max-h-[60dvh] object-contain" />
+              <Image src="/segmen-pt1.png" alt="Segmentación PT" width={820} height={820} className="w-full h-auto block" />
             </div>
           )}
           {lang === "en" && (
             <div className="w-full rounded-2xl overflow-hidden border-2 border-white/15 shadow-2xl shadow-black/20">
-              <Image src="/segmen-en1.png" alt="Segmentación EN" width={820} height={820} className="w-full h-auto block max-h-[60dvh] object-contain" />
+              <Image src="/segmen-en1.png" alt="Segmentación EN" width={820} height={820} className="w-full h-auto block" />
             </div>
           )}
         </div>
