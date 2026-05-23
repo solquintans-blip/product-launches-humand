@@ -78,7 +78,7 @@ const TRANSLATIONS = {
     insights: "Insights 2.0",
     legajo: "Arquivo Digital de Funcionários",
     ciclo: "Ciclo de Vida",
-    payroll: "Folha de Pagamento",
+    payroll: "Payroll",
     certificados: "Certificados de cursos",
     segmentacion: "Segmentação\nAdmin e Usuário",
     themes: "Themes",
