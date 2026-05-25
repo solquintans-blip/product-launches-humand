@@ -1149,7 +1149,9 @@ function S_CrearCursoIA({ active }: { active: boolean }) {
 }
 function S_AtsAI({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.atsAI} image="/atsAI.png" badge={t.badgeReclutamiento} />
+  const lang = useLang()
+  const image = lang === "es" ? "/revision-es.png" : lang === "pt" ? "/revision-pt.png" : "/atsAI.png"
+  return <CardSlide active={active} title={t.atsAI} image={image} badge={t.badgeReclutamiento} />
 }
 function S_PostAI({ active }: { active: boolean }) {
   const t = useT()
