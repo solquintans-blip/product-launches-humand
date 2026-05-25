@@ -1013,7 +1013,7 @@ function S11_Segmentacion({ active }: { active: boolean }) {
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10.5" }}>
+        <div className="relative w-full overflow-hidden rounded-2xl border-2 border-white/15 shadow-2xl shadow-black/20" style={{ aspectRatio: "16/10.5" }}>
           {lang === "es" && active && (
             <ResponsiveIframe
               src="/ryp-segmentado-animation.html"
@@ -1023,14 +1023,10 @@ function S11_Segmentacion({ active }: { active: boolean }) {
             />
           )}
           {lang === "pt" && (
-            <div className="w-full rounded-2xl overflow-hidden border-2 border-white/15 shadow-2xl shadow-black/20">
-              <Image src="/segmen-pt1.png" alt="Segmentación PT" width={820} height={820} className="w-full h-auto block" />
-            </div>
+            <Image src="/segmen-pt1.png" alt="Segmentación PT" width={820} height={820} className="w-full h-auto block" />
           )}
           {lang === "en" && (
-            <div className="w-full rounded-2xl overflow-hidden border-2 border-white/15 shadow-2xl shadow-black/20">
-              <Image src="/segmen-en1.png" alt="Segmentación EN" width={820} height={820} className="w-full h-auto block" />
-            </div>
+            <Image src="/segmen-en1.png" alt="Segmentación EN" width={820} height={820} className="w-full h-auto block" />
           )}
         </div>
       </An>
