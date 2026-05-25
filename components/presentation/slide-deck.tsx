@@ -889,7 +889,7 @@ function S09_Ciclo({ active }: { active: boolean }) {
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10.5" }}>
+        <div className="relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: "16/10.5" }}>
           {lang === "es" && active && (
             <ResponsiveIframe
               src="/lifecycle-animation.html"
@@ -899,10 +899,10 @@ function S09_Ciclo({ active }: { active: boolean }) {
             />
           )}
           {lang === "pt" && (
-            <Image src="/lifecycle-pt.png" alt="Lifecycle PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/lifecycle-pt.png" alt="Lifecycle PT" width={820} height={540} className="w-full h-auto block" />
           )}
           {lang === "en" && (
-            <Image src="/lifecycle-en.png" alt="Lifecycle EN" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/lifecycle-en.png" alt="Lifecycle EN" width={820} height={540} className="w-full h-auto block" />
           )}
         </div>
       </An>
