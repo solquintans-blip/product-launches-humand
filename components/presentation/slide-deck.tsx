@@ -44,7 +44,7 @@ const TRANSLATIONS = {
     resumenObjetivosIA: "Generar resumen de Objetivos con IA",
     calibration: "Calibración de Performance",
     voicenoteCEO: "Voicenote CEO",
-    sharePosts: "Compartir publicaciones del Feed",
+    sharePosts: "Compartir publicaciones del Muro",
     chatGallery: "Galería de archivos, links e imágenes",
     timeTrackingPerms: "Permisos segmentados para Control Horario",
     preboarding: "Preboarding",
@@ -90,7 +90,7 @@ const TRANSLATIONS = {
     resumenObjetivosIA: "Gerar resumo de Metas com IA",
     calibration: "Calibração de Performance",
     voicenoteCEO: "Voicenote CEO",
-    sharePosts: "Compartilhar publicações do Feed",
+    sharePosts: "Compartilhar publicações do Mural",
     chatGallery: "Galeria de arquivos, links e imagens",
     timeTrackingPerms: "Permissões segmentadas para Controle de Presença",
     preboarding: "Preboarding",
@@ -1254,7 +1254,9 @@ function S_VoicenoteCEO({ active }: { active: boolean }) {
 }
 function S_SharePosts({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.sharePosts} image="/share-posts.png" badge={t.badgeFeedGrupos} />
+  const lang = useLang()
+  const image = lang === 'en' ? '/share-posts.png' : lang === 'pt' ? '/compartir-pt.png' : '/compartir-es.png'
+  return <CardSlide active={active} title={t.sharePosts} image={image} badge={t.badgeFeedGrupos} />
 }
 function S_NotifBubble({ active }: { active: boolean }) {
   return <CardSlide active={active} title="Bubble para notificaciones" image="/notif-bubble.png" badge="Gestión de Servicios" />
