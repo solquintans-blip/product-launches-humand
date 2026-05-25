@@ -1057,10 +1057,10 @@ function S_Themes({ active }: { active: boolean }) {
             />
           )}
           {lang === "pt" && (
-            <Image src="/theme-teal-pt.png" alt="Themes PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/theme-pt.png" alt="Themes PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
           )}
           {lang === "en" && (
-            <Image src="/theme-teal-en.png" alt="Themes EN" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/theme-en.png" alt="Themes EN" width={820} height={540} className="w-full h-auto block rounded-xl" />
           )}
         </div>
       </An>
