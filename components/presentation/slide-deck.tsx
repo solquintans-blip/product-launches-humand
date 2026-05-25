@@ -49,7 +49,7 @@ const TRANSLATIONS = {
     timeTrackingPerms: "Permisos segmentados para Control de Asistencia",
     preboarding: "Preboarding",
     universalSearch: "Búsqueda Universal",
-    renamePDFs: "Renombrar y separar PDFs en Humand",
+    renamePDFs: "Renombrar y separar PDFs",
     badgeLearning: "Aprendizaje",
     badgeReclutamiento: "Reclutamiento",
     badgeFeedGrupos: "Muro & Grupos",
@@ -95,7 +95,7 @@ const TRANSLATIONS = {
     timeTrackingPerms: "Permissões segmentadas para Controle de Presença",
     preboarding: "Preboarding",
     universalSearch: "Busca Universal",
-    renamePDFs: "Renomear e separar PDFs no Humand",
+    renamePDFs: "Renomear e separar PDFs",
     badgeLearning: "Aprendizado",
     badgeReclutamiento: "Recrutamento",
     badgeFeedGrupos: "Mural & Grupos",
@@ -141,7 +141,7 @@ const TRANSLATIONS = {
     timeTrackingPerms: "Segmented Time Tracking Permissions",
     preboarding: "Preboarding",
     universalSearch: "Universal Search",
-    renamePDFs: "Rename & Split PDFs in Humand",
+    renamePDFs: "Rename & Split PDFs",
     badgeLearning: "Learning",
     badgeReclutamiento: "Recruiting",
     badgeFeedGrupos: "Feed & Groups",
@@ -1286,7 +1286,9 @@ function S_UniversalSearch({ active }: { active: boolean }) {
 }
 function S_RenameSplitPDFs({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.renamePDFs} image="/rename-split-pdfs.png" badge={t.badgeDocumentos} />
+  const lang = useLang()
+  const image = lang === 'en' ? '/rename-split-pdfs.png' : lang === 'pt' ? '/nomina-pt.png' : '/nomina-es.png'
+  return <CardSlide active={active} title={t.renamePDFs} image={image} badge={t.badgeDocumentos} />
 }
 
 /* ───────────── Q2 SUMMARY CAROUSEL ───────────── */
