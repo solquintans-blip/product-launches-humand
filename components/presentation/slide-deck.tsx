@@ -1239,7 +1239,9 @@ function CardSlide({ active, title, image, badge, badgeBg = "#E8EBFA", badgeColo
 
 function S_Calibration({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.calibration} image="/calibration.png" badge={t.badgePerfGoals} />
+  const lang = useLang()
+  const image = lang === 'en' ? '/calibration.png' : lang === 'pt' ? '/calibracion-pt.png' : '/calibracion-es.png'
+  return <CardSlide active={active} title={t.calibration} image={image} badge={t.badgePerfGoals} />
 }
 function S_CareersSite({ active }: { active: boolean }) {
   return <CardSlide active={active} title="Careers Site" image="/careers-site.png" badge="Reclutamiento" />
