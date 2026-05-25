@@ -1161,7 +1161,9 @@ function S_PostAI({ active }: { active: boolean }) {
 }
 function S_AutoShiftIA({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.autoShiftIA} image="/autoshift-ai.png" badge={t.badgeTurnos} />
+  const lang = useLang()
+  const image = lang === 'en' ? '/autoshift-ai.png' : lang === 'pt' ? '/turnos-pt.png' : '/turnos-es.png'
+  return <CardSlide active={active} title={t.autoShiftIA} image={image} badge={t.badgeTurnos} />
 }
 function S_TimeTrackingInsightsIA({ active }: { active: boolean }) {
   const t = useT()
