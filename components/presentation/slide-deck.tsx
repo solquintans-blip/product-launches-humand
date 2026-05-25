@@ -1280,7 +1280,9 @@ function S_Preboarding({ active }: { active: boolean }) {
 }
 function S_UniversalSearch({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.universalSearch} image="/universal-search.png" badge={t.badgeBusqueda} />
+  const lang = useLang()
+  const image = lang === 'en' ? '/universal-en.png' : lang === 'pt' ? '/universal-pt.png' : '/universal-es.png'
+  return <CardSlide active={active} title={t.universalSearch} image={image} badge={t.badgeBusqueda} />
 }
 function S_RenameSplitPDFs({ active }: { active: boolean }) {
   const t = useT()
