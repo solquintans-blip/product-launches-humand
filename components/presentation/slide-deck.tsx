@@ -1246,7 +1246,9 @@ function S_CareersSite({ active }: { active: boolean }) {
 }
 function S_VoicenoteCEO({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.voicenoteCEO} image="/voicenote-ceo.png" badge={t.badgeChats} />
+  const lang = useLang()
+  const image = lang === "es" ? "/mensaje-es.png" : lang === "pt" ? "/mensaje-pt.png" : "/voicenote-ceo.png"
+  return <CardSlide active={active} title={t.voicenoteCEO} image={image} badge={t.badgeChats} />
 }
 function S_SharePosts({ active }: { active: boolean }) {
   const t = useT()
