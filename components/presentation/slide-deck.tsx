@@ -1143,7 +1143,9 @@ function SlideFuncionalidadesIA({ active }: { active: boolean }) {
 
 function S_CrearCursoIA({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.crearCursoIA} image="/createcourse.png" badge={t.badgeLearning} />
+  const lang = useLang()
+  const image = lang === "es" ? "/cursoIA-es.png" : lang === "pt" ? "/cursoIA-pt.png" : "/createcourse.png"
+  return <CardSlide active={active} title={t.crearCursoIA} image={image} badge={t.badgeLearning} />
 }
 function S_AtsAI({ active }: { active: boolean }) {
   const t = useT()
