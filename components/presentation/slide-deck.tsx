@@ -1153,7 +1153,9 @@ function S_AtsAI({ active }: { active: boolean }) {
 }
 function S_PostAI({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.postAI} image="/postAI.png" badge={t.badgeFeedGrupos} />
+  const lang = useLang()
+  const image = lang === "en" ? "/postAI.png" : "/publicar-es.png"
+  return <CardSlide active={active} title={t.postAI} image={image} badge={t.badgeFeedGrupos} />
 }
 function S_AutoShiftIA({ active }: { active: boolean }) {
   const t = useT()
