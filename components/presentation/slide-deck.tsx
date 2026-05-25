@@ -1165,7 +1165,9 @@ function S_AutoShiftIA({ active }: { active: boolean }) {
 }
 function S_TimeTrackingInsightsIA({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.timeTrackingIA} image="/autotimetrackingAI.png" badge={t.badgeControlHorario} />
+  const lang = useLang()
+  const image = lang === 'en' ? '/autotimetrackingAI.png' : '/insights-es.png'
+  return <CardSlide active={active} title={t.timeTrackingIA} image={image} badge={t.badgeControlHorario} />
 }
 function S_ResumenObjetivosIA({ active }: { active: boolean }) {
   const t = useT()
