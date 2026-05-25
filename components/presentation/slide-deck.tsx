@@ -46,7 +46,7 @@ const TRANSLATIONS = {
     voicenoteCEO: "Voicenote CEO",
     sharePosts: "Compartir publicaciones del Muro",
     chatGallery: "Galería de archivos, links e imágenes",
-    timeTrackingPerms: "Permisos segmentados para Control Horario",
+    timeTrackingPerms: "Permisos segmentados para Control de Asistencia",
     preboarding: "Preboarding",
     universalSearch: "Búsqueda Universal",
     renamePDFs: "Renombrar y separar PDFs en Humand",
@@ -1270,7 +1270,9 @@ function S_Certificates({ active }: { active: boolean }) {
 }
 function S_TimeTrackingPerms({ active }: { active: boolean }) {
   const t = useT()
-  return <CardSlide active={active} title={t.timeTrackingPerms} image="/time-tracking-perms.jpg" badge={t.badgeControlHorario} />
+  const lang = useLang()
+  const image = lang === 'en' ? '/time-tracking-perms.jpg' : lang === 'pt' ? '/permisos-pt.png' : '/permisos-es.png'
+  return <CardSlide active={active} title={t.timeTrackingPerms} image={image} badge={t.badgeControlHorario} />
 }
 function S_Preboarding({ active }: { active: boolean }) {
   const t = useT()
