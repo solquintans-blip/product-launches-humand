@@ -1096,34 +1096,50 @@ function S13_Carousel2({ active }: { active: boolean }) {
 
 function SlideProximosResumen({ active }: { active: boolean }) {
   const t = useT()
+  const lang = useLang()
   const v = useStagger(active, 2)
-  const features = [
-    { title: t.sammy, badge: "Sammy" },
-    { title: t.crearCursoIA, badge: t.badgeLearning },
-    { title: t.postAI, badge: t.badgeFeedGrupos },
-    { title: t.atsAI, badge: t.badgeReclutamiento },
-    { title: t.voicenoteCEO, badge: t.badgeChats },
-    { title: t.timeTrackingIA, badge: t.badgeControlHorario },
-    { title: t.autoShiftIA, badge: t.badgeTurnos },
-    { title: t.resumenObjetivosIA, badge: t.badgePerfGoals },
-    { title: t.smPreload, badge: t.badgeServiciosMgmt },
-    { title: t.insights, badge: "Insights" },
-    { title: t.legajo, badge: "HR" },
-    { title: t.ciclo, badge: "HR" },
-    { title: t.payroll, badge: "Payroll" },
-    { title: t.certificados, badge: t.badgeLearning },
-    { title: t.segmentacion.replace('\n', ' '), badge: "Admin" },
-    { title: t.themes, badge: "UI" },
-    { title: t.calibration, badge: t.badgePerfGoals },
-    { title: t.sharePosts, badge: t.badgeFeedGrupos },
-    { title: t.chatGallery, badge: t.badgeChats },
-    { title: t.timeTrackingPerms, badge: t.badgeControlHorario },
-    { title: t.preboarding, badge: t.badgeOnboarding },
-    { title: t.universalSearch, badge: t.badgeBusqueda },
-    { title: t.renamePDFs, badge: t.badgeDocumentos },
+  const features: { title: string; badge: string; img: string | null }[] = [
+    { title: t.sammy, badge: "Sammy", img: null },
+    { title: t.crearCursoIA, badge: t.badgeLearning, img: lang === "es" ? "/cursoIA-es.png" : lang === "pt" ? "/cursoIA-pt.png" : "/createcourse.png" },
+    { title: t.postAI, badge: t.badgeFeedGrupos, img: lang === "en" ? "/postAI.png" : "/publicar-es.png" },
+    { title: t.atsAI, badge: t.badgeReclutamiento, img: lang === "es" ? "/revision-es.png" : lang === "pt" ? "/revision-pt.png" : "/atsAI.png" },
+    { title: t.voicenoteCEO, badge: t.badgeChats, img: lang === "es" ? "/mensaje-es.png" : lang === "pt" ? "/mensaje-pt.png" : "/voicenote-ceo.png" },
+    { title: t.timeTrackingIA, badge: t.badgeControlHorario, img: lang === "en" ? "/autotimetrackingAI.png" : "/insights-es.png" },
+    { title: t.autoShiftIA, badge: t.badgeTurnos, img: lang === "en" ? "/autoshift-ai.png" : lang === "pt" ? "/turnos-pt.png" : "/turnos-es.png" },
+    { title: t.resumenObjetivosIA, badge: t.badgePerfGoals, img: "/autosummary-goals-ai.png" },
+    { title: t.smPreload, badge: t.badgeServiciosMgmt, img: "/SM-Card.png" },
+    { title: t.insights, badge: "Insights", img: lang === "pt" ? "/insi1-pt.png" : "/insi1-es.png" },
+    { title: t.legajo, badge: "HR", img: lang === "pt" ? "/lejajo-pt.png" : "/legajo-en.png" },
+    { title: t.ciclo, badge: "HR", img: lang === "pt" ? "/lifecycle-pt.png" : "/lifecycle-en.png" },
+    { title: t.payroll, badge: "Payroll", img: lang === "es" ? "/payroll-es.png" : lang === "pt" ? "/payroll-pt.png" : "/payroll-en.png" },
+    { title: t.certificados, badge: t.badgeLearning, img: lang === "pt" ? "/course-pt.png" : "/course-en.png" },
+    { title: t.segmentacion.replace("\n", " "), badge: "Admin", img: lang === "pt" ? "/segmen-pt1.png" : "/segmen-en1.png" },
+    { title: t.themes, badge: "UI", img: lang === "pt" ? "/theme1-pt.png" : "/theme2-en.png" },
+    { title: t.calibration, badge: t.badgePerfGoals, img: lang === "es" ? "/calibracion-es.png" : lang === "pt" ? "/calibracion-pt.png" : "/calibration.png" },
+    { title: t.sharePosts, badge: t.badgeFeedGrupos, img: lang === "es" ? "/compartir-es.png" : lang === "pt" ? "/compartir-pt.png" : "/share-posts.png" },
+    { title: t.chatGallery, badge: t.badgeChats, img: "/chat-gallery.png" },
+    { title: t.timeTrackingPerms, badge: t.badgeControlHorario, img: lang === "es" ? "/permisos-es.png" : lang === "pt" ? "/permisos-pt.png" : "/time-tracking-perms.jpg" },
+    { title: t.preboarding, badge: t.badgeOnboarding, img: "/preboarding.png" },
+    { title: t.universalSearch, badge: t.badgeBusqueda, img: lang === "es" ? "/universal-es.png" : lang === "pt" ? "/universal-pt.png" : "/universal-en.png" },
+    { title: t.renamePDFs, badge: t.badgeDocumentos, img: lang === "es" ? "/nomina-es.png" : lang === "pt" ? "/nomina-pt.png" : "/rename-split-pdfs.png" },
   ]
   const row1 = features.slice(0, 12)
   const row2 = features.slice(12)
+  const FeatureCard = ({ item }: { item: typeof features[0] }) => (
+    <div className="shrink-0 w-[168px] rounded-xl bg-white shadow-lg overflow-hidden">
+      <div className="px-3 pt-3 pb-2">
+        <span className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold" style={{ background: "#E8EBFA", color: "#4A5BC2" }}>{item.badge}</span>
+        <p className="mt-1.5 text-[11px] font-semibold text-neutral-800 leading-tight" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{item.title}</p>
+      </div>
+      {item.img ? (
+        <div className="overflow-hidden">
+          <Image src={item.img} alt={item.title} width={168} height={95} className="w-full h-[95px] object-cover" />
+        </div>
+      ) : (
+        <div className="h-[95px]" style={{ background: "linear-gradient(135deg, #213478 0%, #4A5BC2 100%)" }} />
+      )}
+    </div>
+  )
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.08" />
@@ -1131,32 +1147,20 @@ function SlideProximosResumen({ active }: { active: boolean }) {
         @keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
       `}</style>
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full border border-white/[0.04]" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full border border-white/[0.07]" />
-      <An show={v[0]} delay={0} className="mb-8 px-8">
+      <An show={v[0]} delay={0} className="mb-6 px-8">
         <h1 className="text-[clamp(1.8rem,5cqw,3rem)] font-black leading-[1.05] tracking-tight text-white">
           {t.proximosResumen}
         </h1>
       </An>
-      <An show={v[1]} delay={200} className="w-full flex flex-col gap-4">
-        <div className="flex overflow-hidden">
-          <div className="flex gap-4 shrink-0" style={{ animation: active ? "marquee-left 35s linear infinite" : "none" }}>
-            {[...row1, ...row1].map((item, i) => (
-              <div key={i} className="shrink-0 flex items-center gap-2.5 rounded-xl bg-white/10 backdrop-blur-sm px-4 py-3 border border-white/15">
-                <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-semibold text-white/90 whitespace-nowrap">{item.badge}</span>
-                <span className="text-sm font-semibold text-white whitespace-nowrap">{item.title}</span>
-              </div>
-            ))}
+      <An show={v[1]} delay={200} className="w-full flex flex-col gap-3">
+        <div className="relative flex overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" }}>
+          <div className="flex gap-3 shrink-0" style={{ animation: active ? "marquee-left 40s linear infinite" : "none" }}>
+            {[...row1, ...row1].map((item, i) => <FeatureCard key={i} item={item} />)}
           </div>
         </div>
-        <div className="flex overflow-hidden">
-          <div className="flex gap-4 shrink-0" style={{ animation: active ? "marquee-right 40s linear infinite" : "none" }}>
-            {[...row2, ...row2].map((item, i) => (
-              <div key={i} className="shrink-0 flex items-center gap-2.5 rounded-xl bg-white/10 backdrop-blur-sm px-4 py-3 border border-white/15">
-                <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-semibold text-white/90 whitespace-nowrap">{item.badge}</span>
-                <span className="text-sm font-semibold text-white whitespace-nowrap">{item.title}</span>
-              </div>
-            ))}
+        <div className="relative flex overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" }}>
+          <div className="flex gap-3 shrink-0" style={{ animation: active ? "marquee-right 45s linear infinite" : "none" }}>
+            {[...row2, ...row2].map((item, i) => <FeatureCard key={i} item={item} />)}
           </div>
         </div>
       </An>
