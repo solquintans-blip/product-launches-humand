@@ -1126,18 +1126,13 @@ function SlideProximosResumen({ active }: { active: boolean }) {
   const row1 = features.slice(0, 12)
   const row2 = features.slice(12)
   const FeatureCard = ({ item }: { item: typeof features[0] }) => (
-    <div className="shrink-0 w-[168px] rounded-xl bg-white shadow-lg overflow-hidden">
-      <div className="px-3 pt-3 pb-2">
-        <span className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold" style={{ background: "#E8EBFA", color: "#4A5BC2" }}>{item.badge}</span>
-        <p className="mt-1.5 text-[11px] font-semibold text-neutral-800 leading-tight" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{item.title}</p>
-      </div>
+    <div className="shrink-0 w-[180px] rounded-2xl overflow-hidden border border-white/20" style={{ background: "rgba(255,255,255,0.09)" }}>
       {item.img ? (
-        <div className="overflow-hidden">
-          <Image src={item.img} alt={item.title} width={168} height={95} className="w-full h-[95px] object-cover" />
-        </div>
+        <Image src={item.img} alt={item.title} width={180} height={112} className="w-full h-[112px] object-cover" />
       ) : (
-        <div className="h-[95px]" style={{ background: "linear-gradient(135deg, #213478 0%, #4A5BC2 100%)" }} />
+        <div className="h-[112px]" style={{ background: "linear-gradient(135deg, #1a2d6b 0%, #3d52b0 100%)" }} />
       )}
+      <p className="px-3 py-2.5 text-[11px] font-semibold text-white leading-tight text-center" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{item.title}</p>
     </div>
   )
   return (
