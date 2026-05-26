@@ -932,13 +932,8 @@ function S10_Payroll({ active }: { active: boolean }) {
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
         <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10.5" }}>
-          {lang === "es" && active && (
-            <ResponsiveIframe
-              src="/payroll-animation.html"
-              designW={820}
-              designH={540}
-              title="Payroll Animation"
-            />
+          {lang === "es" && (
+            <Image src="/payroll-es.png" alt="Payroll ES" width={820} height={540} className="w-full h-auto block rounded-xl" />
           )}
           {lang === "pt" && (
             <Image src="/payroll-pt.png" alt="Payroll PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
