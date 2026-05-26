@@ -25,8 +25,8 @@ const TRANSLATIONS = {
     funcIA2: "con IA",
     proxGrandes1: "Próximos grandes",
     proxGrandes2: "lanzamientos",
-    otrosProx1: "Otros próximos",
-    otrosProx2: "lanzamientos",
+    otrosProx1: "Próximos lanzamientos",
+    otrosProx2: "en los módulos",
     gracias: "¡GRACIAS!",
     sammy: "Sammy 2.0",
     insights: "Insights 2.0",
@@ -1196,7 +1196,7 @@ function SlideOtrosLanzamientos({ active }: { active: boolean }) {
         </An>
         <An show={v[1]} delay={200}>
           <h1 className="text-[clamp(2.2rem,6cqw,4.5rem)] font-black leading-[1] tracking-tight text-white mt-2">
-            {t.proxGrandes2}
+            {t.otrosProx2}
           </h1>
         </An>
       </div>
