@@ -1126,13 +1126,15 @@ function SlideProximosResumen({ active }: { active: boolean }) {
   const row1 = features.slice(0, 12)
   const row2 = features.slice(12)
   const FeatureCard = ({ item }: { item: typeof features[0] }) => (
-    <div className="shrink-0 w-[180px] rounded-2xl overflow-hidden border border-white/20" style={{ background: "rgba(255,255,255,0.09)" }}>
-      {item.img ? (
-        <Image src={item.img} alt={item.title} width={180} height={112} className="w-full h-auto block" />
-      ) : (
-        <div className="h-[112px]" style={{ background: "linear-gradient(135deg, #1a2d6b 0%, #3d52b0 100%)" }} />
-      )}
-      <p className="px-3 py-2.5 text-[11px] font-semibold text-white leading-tight text-center" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{item.title}</p>
+    <div className="shrink-0 rounded-2xl overflow-hidden border border-white/20" style={{ width: "clamp(130px, 13cqw, 190px)", background: "rgba(255,255,255,0.09)" }}>
+      <div className="overflow-hidden" style={{ height: "clamp(80px, 8cqw, 118px)" }}>
+        {item.img ? (
+          <Image src={item.img} alt={item.title} width={190} height={118} className="w-full h-full object-cover object-top" />
+        ) : (
+          <div className="w-full h-full" style={{ background: "linear-gradient(135deg, #1a2d6b 0%, #3d52b0 100%)" }} />
+        )}
+      </div>
+      <p className="px-2.5 py-2 font-semibold text-white leading-tight text-center" style={{ fontSize: "clamp(9px, 1.05cqw, 12px)", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{item.title}</p>
     </div>
   )
   return (
