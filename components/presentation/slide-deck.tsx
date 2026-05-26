@@ -1119,7 +1119,7 @@ function SlideProximosResumen({ active }: { active: boolean }) {
     { title: t.sharePosts, badge: t.badgeFeedGrupos, img: lang === "es" ? "/compartir-es.png" : lang === "pt" ? "/compartir-pt.png" : "/share-posts.png" },
     { title: t.chatGallery, badge: t.badgeChats, img: "/chat-gallery.png" },
     { title: t.timeTrackingPerms, badge: t.badgeControlHorario, img: lang === "es" ? "/permisos-es.png" : lang === "pt" ? "/permisos-pt.png" : "/time-tracking-perms.jpg" },
-    { title: t.preboarding, badge: t.badgeOnboarding, img: "/preboarding.png" },
+    { title: t.preboarding, badge: t.badgeOnboarding, img: "/preboardingspace.png" },
     { title: t.universalSearch, badge: t.badgeBusqueda, img: lang === "es" ? "/universal-es.png" : lang === "pt" ? "/universal-pt.png" : "/universal-en.png" },
     { title: t.renamePDFs, badge: t.badgeDocumentos, img: lang === "es" ? "/nomina-es.png" : lang === "pt" ? "/nomina-pt.png" : "/rename-split-pdfs.png" },
   ]
