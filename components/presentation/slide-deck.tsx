@@ -1101,10 +1101,10 @@ function SlideProximosResumen({ active }: { active: boolean }) {
   const [section, setSection] = useState(0)
 
   const sectionLabels = lang === "en"
-    ? ["AI", "Major Launches", "New Features"]
+    ? ["Humand AI", "Major Launches", "New Features"]
     : lang === "pt"
-    ? ["IA", "Grandes lançamentos", "Novas funcionalidades"]
-    : ["IA", "Grandes lanzamientos", "Nuevas funcionalidades"]
+    ? ["Humand AI", "Grandes lançamentos", "Novas funcionalidades"]
+    : ["Humand AI", "Grandes lanzamientos", "Nuevas funcionalidades"]
 
   type Feat = { title: string; img: string | null }
   const allSections: Feat[][] = [
