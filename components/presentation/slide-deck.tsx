@@ -1109,7 +1109,7 @@ function SlideProximosResumen({ active }: { active: boolean }) {
   type Feat = { title: string; img: string | null }
   const allSections: Feat[][] = [
     [
-      { title: t.sammy, img: null },
+      { title: t.sammy, img: "/sammyportada.png" },
       { title: t.crearCursoIA, img: lang === "es" ? "/cursoIA-es.png" : lang === "pt" ? "/cursoIA-pt.png" : "/createcourse.png" },
       { title: t.postAI, img: lang === "en" ? "/postAI.png" : "/publicar-es.png" },
       { title: t.atsAI, img: lang === "es" ? "/revision-es.png" : lang === "pt" ? "/revision-pt.png" : "/atsAI.png" },
@@ -1118,6 +1118,7 @@ function SlideProximosResumen({ active }: { active: boolean }) {
       { title: t.autoShiftIA, img: lang === "en" ? "/autoshift-ai.png" : lang === "pt" ? "/turnos-pt.png" : "/turnos-es.png" },
       { title: t.resumenObjetivosIA, img: "/autosummary-goals-ai.png" },
       { title: t.smPreload, img: "/SM-Card.png" },
+      { title: t.renamePDFs, img: lang === "es" ? "/nomina-es.png" : lang === "pt" ? "/nomina-pt.png" : "/rename-split-pdfs.png" },
     ],
     [
       { title: t.insights, img: lang === "pt" ? "/insi1-pt.png" : "/insi1-es.png" },
@@ -1135,7 +1136,6 @@ function SlideProximosResumen({ active }: { active: boolean }) {
       { title: t.timeTrackingPerms, img: lang === "es" ? "/permisos-es.png" : lang === "pt" ? "/permisos-pt.png" : "/time-tracking-perms.jpg" },
       { title: t.preboarding, img: "/preboardingspace.png" },
       { title: t.universalSearch, img: lang === "es" ? "/universal-es.png" : lang === "pt" ? "/universal-pt.png" : "/universal-en.png" },
-      { title: t.renamePDFs, img: lang === "es" ? "/nomina-es.png" : lang === "pt" ? "/nomina-pt.png" : "/rename-split-pdfs.png" },
     ],
   ]
 
@@ -1542,6 +1542,7 @@ const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; b
   { component: S_AutoShiftIA, bg: "bg-[#213478]" },    // 14 Recomendación automática de turnos
   { component: S_ResumenObjetivosIA, bg: "bg-[#213478]" }, // 15 Resumen Objetivos con IA
   { component: S_SMPreload, bg: "bg-[#213478]" },           // Gestión de Servicios
+  { component: S_RenameSplitPDFs, bg: "bg-[#213478]" },     // Rename & Split PDFs
   { component: SlideTransition, bg: "bg-[#213478]" },  // 15 Próximos grandes lanzamientos
   { component: S_Insights, bg: "bg-[#213478]" },       // 09 Insights 2.0
   { component: S08_Legajo, bg: "bg-[#213478]" },       // 10 Legajo Digital
@@ -1557,7 +1558,6 @@ const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; b
   { component: S_TimeTrackingPerms, bg: "bg-[#213478]" },   // Time Tracking Permissions
   { component: S_Preboarding, bg: "bg-[#213478]" },         // Preboarding
   { component: S_UniversalSearch, bg: "bg-[#213478]" },     // Universal Search
-  { component: S_RenameSplitPDFs, bg: "bg-[#213478]" },     // Rename & Split PDFs
   { component: S_Thanks, bg: "bg-[#213478]" },                // ¡GRACIAS!
 ]
 
