@@ -62,6 +62,7 @@ const TRANSLATIONS = {
     badgeDocumentos: "Documentos",
     badgeServiciosMgmt: "Gestión de Servicios",
     smPreload: "Pre-cargar campos desde un archivo",
+    proximosResumen: "Todo lo que se viene en Humand",
   },
   pt: {
     navHint: "Navegue com as setas",
@@ -108,6 +109,7 @@ const TRANSLATIONS = {
     badgeDocumentos: "Documentos",
     badgeServiciosMgmt: "Gerenciamento de serviços",
     smPreload: "Pré-carregar campos de um arquivo",
+    proximosResumen: "Tudo que está chegando na Humand",
   },
   en: {
     navHint: "Navigate with arrows",
@@ -154,6 +156,7 @@ const TRANSLATIONS = {
     badgeDocumentos: "Documents",
     badgeServiciosMgmt: "Service Management",
     smPreload: "Pre-load fields from a file",
+    proximosResumen: "Everything coming to Humand",
   },
 } as const
 
@@ -1091,6 +1094,76 @@ function S13_Carousel2({ active }: { active: boolean }) {
   )
 }
 
+function SlideProximosResumen({ active }: { active: boolean }) {
+  const t = useT()
+  const v = useStagger(active, 2)
+  const features = [
+    { title: t.sammy, badge: "Sammy" },
+    { title: t.crearCursoIA, badge: t.badgeLearning },
+    { title: t.postAI, badge: t.badgeFeedGrupos },
+    { title: t.atsAI, badge: t.badgeReclutamiento },
+    { title: t.voicenoteCEO, badge: t.badgeChats },
+    { title: t.timeTrackingIA, badge: t.badgeControlHorario },
+    { title: t.autoShiftIA, badge: t.badgeTurnos },
+    { title: t.resumenObjetivosIA, badge: t.badgePerfGoals },
+    { title: t.smPreload, badge: t.badgeServiciosMgmt },
+    { title: t.insights, badge: "Insights" },
+    { title: t.legajo, badge: "HR" },
+    { title: t.ciclo, badge: "HR" },
+    { title: t.payroll, badge: "Payroll" },
+    { title: t.certificados, badge: t.badgeLearning },
+    { title: t.segmentacion.replace('\n', ' '), badge: "Admin" },
+    { title: t.themes, badge: "UI" },
+    { title: t.calibration, badge: t.badgePerfGoals },
+    { title: t.sharePosts, badge: t.badgeFeedGrupos },
+    { title: t.chatGallery, badge: t.badgeChats },
+    { title: t.timeTrackingPerms, badge: t.badgeControlHorario },
+    { title: t.preboarding, badge: t.badgeOnboarding },
+    { title: t.universalSearch, badge: t.badgeBusqueda },
+    { title: t.renamePDFs, badge: t.badgeDocumentos },
+  ]
+  const row1 = features.slice(0, 12)
+  const row2 = features.slice(12)
+  return (
+    <div className="relative flex h-full flex-col items-center justify-center overflow-hidden text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
+      <DotGrid opacity="0.08" />
+      <style>{`
+        @keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+      `}</style>
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full border border-white/[0.04]" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full border border-white/[0.07]" />
+      <An show={v[0]} delay={0} className="mb-8 px-8">
+        <h1 className="text-[clamp(1.8rem,5cqw,3rem)] font-black leading-[1.05] tracking-tight text-white">
+          {t.proximosResumen}
+        </h1>
+      </An>
+      <An show={v[1]} delay={200} className="w-full flex flex-col gap-4">
+        <div className="flex overflow-hidden">
+          <div className="flex gap-4 shrink-0" style={{ animation: active ? "marquee-left 35s linear infinite" : "none" }}>
+            {[...row1, ...row1].map((item, i) => (
+              <div key={i} className="shrink-0 flex items-center gap-2.5 rounded-xl bg-white/10 backdrop-blur-sm px-4 py-3 border border-white/15">
+                <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-semibold text-white/90 whitespace-nowrap">{item.badge}</span>
+                <span className="text-sm font-semibold text-white whitespace-nowrap">{item.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex overflow-hidden">
+          <div className="flex gap-4 shrink-0" style={{ animation: active ? "marquee-right 40s linear infinite" : "none" }}>
+            {[...row2, ...row2].map((item, i) => (
+              <div key={i} className="shrink-0 flex items-center gap-2.5 rounded-xl bg-white/10 backdrop-blur-sm px-4 py-3 border border-white/15">
+                <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-xs font-semibold text-white/90 whitespace-nowrap">{item.badge}</span>
+                <span className="text-sm font-semibold text-white whitespace-nowrap">{item.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </An>
+    </div>
+  )
+}
+
 function SlideFuncionalidadesIA({ active }: { active: boolean }) {
   const t = useT()
   const v = useStagger(active, 4, 600)
@@ -1426,6 +1499,7 @@ function S_SMPreload({ active }: { active: boolean }) {
 
 const SLIDES: { component: React.FC<{ active: boolean; onNext?: () => void }>; bg: string }[] = [
   { component: SlideIntro, bg: "bg-[#213478]" },       // 01 Intro
+  { component: SlideProximosResumen, bg: "bg-[#213478]" }, // 02 Todo lo que se viene
   { component: SlideFuncionalidadesIA, bg: "bg-[#213478]" }, // 12 Funcionalidades con IA
   { component: S07_Sammy, bg: "bg-[#213478]" },        // Sammy 2.0
   { component: S_CrearCursoIA, bg: "bg-[#213478]" },   // 13 Crear curso con IA
