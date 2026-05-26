@@ -1172,18 +1172,19 @@ function SlideProximosResumen({ active }: { active: boolean }) {
           </div>
         </An>
       </div>
-      <An show={v[1]} delay={400} className="mb-[5%]">
-        <div className="flex gap-1 rounded-full p-1.5" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)" }}>
+      <An show={v[1]} delay={400} className="mb-[9%]">
+        <div className="flex gap-1 rounded-full p-1.5" style={{ background: "rgba(255,255,255,0.18)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.30)", boxShadow: "0 4px 24px rgba(0,0,0,0.18)" }}>
           {sectionLabels.map((label, i) => (
             <button
               key={i}
               onClick={() => setSection(i)}
-              className="rounded-full transition-all duration-200 font-semibold whitespace-nowrap"
+              className="rounded-full transition-all duration-200 font-bold whitespace-nowrap cursor-pointer"
               style={{
-                fontSize: "clamp(10px, 1.1cqw, 13px)",
-                padding: "clamp(4px,0.5cqw,7px) clamp(12px,1.5cqw,20px)",
-                background: section === i ? "rgba(255,255,255,0.92)" : "transparent",
-                color: section === i ? "#213478" : "rgba(255,255,255,0.75)",
+                fontSize: "clamp(11px, 1.15cqw, 14px)",
+                padding: "clamp(5px,0.6cqw,8px) clamp(14px,1.6cqw,22px)",
+                background: section === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.08)",
+                color: section === i ? "#213478" : "rgba(255,255,255,0.92)",
+                letterSpacing: section === i ? undefined : "0.01em",
               }}
             >
               {label}
