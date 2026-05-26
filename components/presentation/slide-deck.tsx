@@ -1142,15 +1142,15 @@ function SlideProximosResumen({ active }: { active: boolean }) {
   const features = allSections[section]
 
   const FeatureCard = ({ item }: { item: Feat }) => (
-    <div className="shrink-0 rounded-2xl overflow-hidden border border-white/20" style={{ width: "clamp(130px, 13cqw, 190px)", background: "rgba(255,255,255,0.09)" }}>
-      <div className="overflow-hidden" style={{ height: "clamp(80px, 8cqw, 118px)" }}>
+    <div className="shrink-0 rounded-2xl overflow-hidden border border-white/20" style={{ width: "clamp(200px, 20cqw, 290px)", background: "rgba(255,255,255,0.09)" }}>
+      <div className="overflow-hidden" style={{ height: "clamp(120px, 12cqw, 175px)" }}>
         {item.img ? (
-          <Image src={item.img} alt={item.title} width={190} height={118} className="w-full h-full object-cover object-top" />
+          <Image src={item.img} alt={item.title} width={290} height={175} className="w-full h-full object-cover object-top" />
         ) : (
           <div className="w-full h-full" style={{ background: "linear-gradient(135deg, #1a2d6b 0%, #3d52b0 100%)" }} />
         )}
       </div>
-      <p className="px-2.5 py-2 font-semibold text-white leading-tight text-center" style={{ fontSize: "clamp(9px, 1.05cqw, 12px)", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{item.title}</p>
+      <p className="px-3 py-3 font-semibold text-white leading-snug text-center" style={{ fontSize: "clamp(12px, 1.3cqw, 17px)", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{item.title}</p>
     </div>
   )
 
@@ -1166,7 +1166,7 @@ function SlideProximosResumen({ active }: { active: boolean }) {
         </An>
         <An show={v[1]} delay={200} className="w-full">
           <div className="relative flex overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" }}>
-            <div key={section} className="flex gap-3 shrink-0" style={{ animation: active ? "marquee-left 28s linear infinite" : "none" }}>
+            <div key={section} className="flex gap-4 shrink-0" style={{ animation: active ? "marquee-left 32s linear infinite" : "none" }}>
               {[...features, ...features].map((item, i) => <FeatureCard key={i} item={item} />)}
             </div>
           </div>
