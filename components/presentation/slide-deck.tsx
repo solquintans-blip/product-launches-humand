@@ -1626,6 +1626,36 @@ export function SlideDeck() {
       onTouchEnd={handleTouchEnd}
       style={{ containerType: "size" }}
     >
+      {/* Section Nav */}
+      {current >= 2 && (() => {
+        const labels = lang === "en"
+          ? ["Humand AI", "Major Launches", "New Features"]
+          : lang === "pt"
+          ? ["Humand AI", "Grandes lançamentos", "Novas funcionalidades"]
+          : ["Humand AI", "Grandes lanzamientos", "Nuevas funcionalidades"]
+        const starts = [2, 13, 21]
+        const active = current >= 21 ? 2 : current >= 13 ? 1 : 0
+        return (
+          <div className="absolute top-4 left-4 z-50 flex gap-1 rounded-full p-1" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.22)" }}>
+            {labels.map((label, i) => (
+              <button
+                key={i}
+                onClick={(e) => { e.stopPropagation(); goTo(starts[i]) }}
+                className="rounded-full transition-all duration-200 font-semibold whitespace-nowrap cursor-pointer"
+                style={{
+                  fontSize: "clamp(9px, 0.9cqw, 11px)",
+                  padding: "clamp(3px,0.4cqw,5px) clamp(9px,1.1cqw,14px)",
+                  background: active === i ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.06)",
+                  color: active === i ? "#213478" : "rgba(255,255,255,0.88)",
+                }}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )
+      })()}
+
       {/* Language Switcher */}
       <div className="absolute top-4 right-20 z-50 flex gap-1 rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur-sm">
         {(["es", "pt", "en"] as Lang[]).map((l) => (
