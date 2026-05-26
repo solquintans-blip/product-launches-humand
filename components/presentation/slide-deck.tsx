@@ -1098,34 +1098,50 @@ function SlideProximosResumen({ active }: { active: boolean }) {
   const t = useT()
   const lang = useLang()
   const v = useStagger(active, 2)
-  const features: { title: string; badge: string; img: string | null }[] = [
-    { title: t.sammy, badge: "Sammy", img: null },
-    { title: t.crearCursoIA, badge: t.badgeLearning, img: lang === "es" ? "/cursoIA-es.png" : lang === "pt" ? "/cursoIA-pt.png" : "/createcourse.png" },
-    { title: t.postAI, badge: t.badgeFeedGrupos, img: lang === "en" ? "/postAI.png" : "/publicar-es.png" },
-    { title: t.atsAI, badge: t.badgeReclutamiento, img: lang === "es" ? "/revision-es.png" : lang === "pt" ? "/revision-pt.png" : "/atsAI.png" },
-    { title: t.voicenoteCEO, badge: t.badgeChats, img: lang === "es" ? "/mensaje-es.png" : lang === "pt" ? "/mensaje-pt.png" : "/voicenote-ceo.png" },
-    { title: t.timeTrackingIA, badge: t.badgeControlHorario, img: lang === "en" ? "/autotimetrackingAI.png" : "/insights-es.png" },
-    { title: t.autoShiftIA, badge: t.badgeTurnos, img: lang === "en" ? "/autoshift-ai.png" : lang === "pt" ? "/turnos-pt.png" : "/turnos-es.png" },
-    { title: t.resumenObjetivosIA, badge: t.badgePerfGoals, img: "/autosummary-goals-ai.png" },
-    { title: t.smPreload, badge: t.badgeServiciosMgmt, img: "/SM-Card.png" },
-    { title: t.insights, badge: "Insights", img: lang === "pt" ? "/insi1-pt.png" : "/insi1-es.png" },
-    { title: t.legajo, badge: "HR", img: lang === "pt" ? "/lejajo-pt.png" : "/legajo-en.png" },
-    { title: t.ciclo, badge: "HR", img: lang === "pt" ? "/lifecycle-pt.png" : "/lifecycle-en.png" },
-    { title: t.payroll, badge: "Payroll", img: lang === "es" ? "/payroll-es.png" : lang === "pt" ? "/payroll-pt.png" : "/payroll-en.png" },
-    { title: t.certificados, badge: t.badgeLearning, img: lang === "pt" ? "/course-pt.png" : "/course-en.png" },
-    { title: t.segmentacion.replace("\n", " "), badge: "Admin", img: lang === "pt" ? "/segmen-pt1.png" : "/segmen-en1.png" },
-    { title: t.themes, badge: "UI", img: lang === "pt" ? "/theme1-pt.png" : "/theme2-en.png" },
-    { title: t.calibration, badge: t.badgePerfGoals, img: lang === "es" ? "/calibracion-es.png" : lang === "pt" ? "/calibracion-pt.png" : "/calibration.png" },
-    { title: t.sharePosts, badge: t.badgeFeedGrupos, img: lang === "es" ? "/compartir-es.png" : lang === "pt" ? "/compartir-pt.png" : "/share-posts.png" },
-    { title: t.chatGallery, badge: t.badgeChats, img: "/chat-gallery.png" },
-    { title: t.timeTrackingPerms, badge: t.badgeControlHorario, img: lang === "es" ? "/permisos-es.png" : lang === "pt" ? "/permisos-pt.png" : "/time-tracking-perms.jpg" },
-    { title: t.preboarding, badge: t.badgeOnboarding, img: "/preboardingspace.png" },
-    { title: t.universalSearch, badge: t.badgeBusqueda, img: lang === "es" ? "/universal-es.png" : lang === "pt" ? "/universal-pt.png" : "/universal-en.png" },
-    { title: t.renamePDFs, badge: t.badgeDocumentos, img: lang === "es" ? "/nomina-es.png" : lang === "pt" ? "/nomina-pt.png" : "/rename-split-pdfs.png" },
+  const [section, setSection] = useState(0)
+
+  const sectionLabels = lang === "en"
+    ? ["AI", "Major Launches", "New Features"]
+    : lang === "pt"
+    ? ["IA", "Grandes lançamentos", "Novas funcionalidades"]
+    : ["IA", "Grandes lanzamientos", "Nuevas funcionalidades"]
+
+  type Feat = { title: string; img: string | null }
+  const allSections: Feat[][] = [
+    [
+      { title: t.sammy, img: null },
+      { title: t.crearCursoIA, img: lang === "es" ? "/cursoIA-es.png" : lang === "pt" ? "/cursoIA-pt.png" : "/createcourse.png" },
+      { title: t.postAI, img: lang === "en" ? "/postAI.png" : "/publicar-es.png" },
+      { title: t.atsAI, img: lang === "es" ? "/revision-es.png" : lang === "pt" ? "/revision-pt.png" : "/atsAI.png" },
+      { title: t.voicenoteCEO, img: lang === "es" ? "/mensaje-es.png" : lang === "pt" ? "/mensaje-pt.png" : "/voicenote-ceo.png" },
+      { title: t.timeTrackingIA, img: lang === "en" ? "/autotimetrackingAI.png" : "/insights-es.png" },
+      { title: t.autoShiftIA, img: lang === "en" ? "/autoshift-ai.png" : lang === "pt" ? "/turnos-pt.png" : "/turnos-es.png" },
+      { title: t.resumenObjetivosIA, img: "/autosummary-goals-ai.png" },
+      { title: t.smPreload, img: "/SM-Card.png" },
+    ],
+    [
+      { title: t.insights, img: lang === "pt" ? "/insi1-pt.png" : "/insi1-es.png" },
+      { title: t.legajo, img: lang === "pt" ? "/lejajo-pt.png" : "/legajo-en.png" },
+      { title: t.ciclo, img: lang === "pt" ? "/lifecycle-pt.png" : "/lifecycle-en.png" },
+      { title: t.payroll, img: lang === "es" ? "/payroll-es.png" : lang === "pt" ? "/payroll-pt.png" : "/payroll-en.png" },
+      { title: t.certificados, img: lang === "pt" ? "/course-pt.png" : "/course-en.png" },
+      { title: t.segmentacion.replace("\n", " "), img: lang === "pt" ? "/segmen-pt1.png" : "/segmen-en1.png" },
+      { title: t.themes, img: lang === "pt" ? "/theme1-pt.png" : "/theme2-en.png" },
+    ],
+    [
+      { title: t.calibration, img: lang === "es" ? "/calibracion-es.png" : lang === "pt" ? "/calibracion-pt.png" : "/calibration.png" },
+      { title: t.sharePosts, img: lang === "es" ? "/compartir-es.png" : lang === "pt" ? "/compartir-pt.png" : "/share-posts.png" },
+      { title: t.chatGallery, img: "/chat-gallery.png" },
+      { title: t.timeTrackingPerms, img: lang === "es" ? "/permisos-es.png" : lang === "pt" ? "/permisos-pt.png" : "/time-tracking-perms.jpg" },
+      { title: t.preboarding, img: "/preboardingspace.png" },
+      { title: t.universalSearch, img: lang === "es" ? "/universal-es.png" : lang === "pt" ? "/universal-pt.png" : "/universal-en.png" },
+      { title: t.renamePDFs, img: lang === "es" ? "/nomina-es.png" : lang === "pt" ? "/nomina-pt.png" : "/rename-split-pdfs.png" },
+    ],
   ]
-  const row1 = features.slice(0, 12)
-  const row2 = features.slice(12)
-  const FeatureCard = ({ item }: { item: typeof features[0] }) => (
+
+  const features = allSections[section]
+
+  const FeatureCard = ({ item }: { item: Feat }) => (
     <div className="shrink-0 rounded-2xl overflow-hidden border border-white/20" style={{ width: "clamp(130px, 13cqw, 190px)", background: "rgba(255,255,255,0.09)" }}>
       <div className="overflow-hidden" style={{ height: "clamp(80px, 8cqw, 118px)" }}>
         {item.img ? (
@@ -1137,28 +1153,42 @@ function SlideProximosResumen({ active }: { active: boolean }) {
       <p className="px-2.5 py-2 font-semibold text-white leading-tight text-center" style={{ fontSize: "clamp(9px, 1.05cqw, 12px)", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{item.title}</p>
     </div>
   )
+
   return (
-    <div className="relative flex h-full flex-col items-center justify-center overflow-hidden text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
+    <div className="relative flex h-full flex-col items-center overflow-hidden" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.08" />
-      <style>{`
-        @keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-      `}</style>
-      <An show={v[0]} delay={0} className="mb-6 px-8">
-        <h1 className="text-[clamp(1.8rem,5cqw,3rem)] font-black leading-[1.05] tracking-tight text-white">
-          {t.proximosResumen}
-        </h1>
-      </An>
-      <An show={v[1]} delay={200} className="w-full flex flex-col gap-3">
-        <div className="relative flex overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" }}>
-          <div className="flex gap-3 shrink-0" style={{ animation: active ? "marquee-left 40s linear infinite" : "none" }}>
-            {[...row1, ...row1].map((item, i) => <FeatureCard key={i} item={item} />)}
+      <style>{`@keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }`}</style>
+      <div className="flex flex-col items-center justify-center flex-1 w-full gap-6">
+        <An show={v[0]} delay={0} className="px-8 text-center">
+          <h1 className="text-[clamp(1.8rem,5cqw,3rem)] font-black leading-[1.05] tracking-tight text-white">
+            {t.proximosResumen}
+          </h1>
+        </An>
+        <An show={v[1]} delay={200} className="w-full">
+          <div className="relative flex overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" }}>
+            <div key={section} className="flex gap-3 shrink-0" style={{ animation: active ? "marquee-left 28s linear infinite" : "none" }}>
+              {[...features, ...features].map((item, i) => <FeatureCard key={i} item={item} />)}
+            </div>
           </div>
-        </div>
-        <div className="relative flex overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)" }}>
-          <div className="flex gap-3 shrink-0" style={{ animation: active ? "marquee-right 45s linear infinite" : "none" }}>
-            {[...row2, ...row2].map((item, i) => <FeatureCard key={i} item={item} />)}
-          </div>
+        </An>
+      </div>
+      <An show={v[1]} delay={400} className="mb-[5%]">
+        <div className="flex gap-1 rounded-full p-1.5" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.18)" }}>
+          {sectionLabels.map((label, i) => (
+            <button
+              key={i}
+              onClick={() => setSection(i)}
+              className="rounded-full transition-all duration-200 font-semibold whitespace-nowrap"
+              style={{
+                fontSize: "clamp(10px, 1.1cqw, 13px)",
+                padding: "clamp(4px,0.5cqw,7px) clamp(12px,1.5cqw,20px)",
+                background: section === i ? "rgba(255,255,255,0.92)" : "transparent",
+                color: section === i ? "#213478" : "rgba(255,255,255,0.75)",
+              }}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </An>
     </div>
