@@ -1067,7 +1067,7 @@ function S_Themes({ active }: { active: boolean }) {
           )}
           {lang !== "es" && (
             <Image
-              src={lang === "pt" ? "/theme1-pt.png" : "/theme1-en.png"}
+              src={lang === "pt" ? "/theme1-pt.png" : "/theme2-en.png"}
               alt="Themes"
               fill
               style={{ objectFit: "contain", objectPosition: "center" }}
