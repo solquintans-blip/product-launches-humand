@@ -865,7 +865,7 @@ function S08_Legajo({ active }: { active: boolean }) {
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10.5" }}>
+        <div className="relative w-full overflow-hidden rounded-xl" style={{ aspectRatio: "16/10.5" }}>
           {lang === "es" && active && (
             <ResponsiveIframe
               src="/legajo-animation.html"
@@ -875,10 +875,10 @@ function S08_Legajo({ active }: { active: boolean }) {
             />
           )}
           {lang === "pt" && (
-            <Image src="/lejajo-pt.png" alt="Legajo PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/lejajo-pt.png" alt="Legajo PT" width={820} height={540} className="w-full h-auto block" />
           )}
           {lang === "en" && (
-            <Image src="/legajo-en.png" alt="Legajo EN" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/legajo-en.png" alt="Legajo EN" width={820} height={540} className="w-full h-auto block" />
           )}
         </div>
       </An>
