@@ -762,7 +762,7 @@ function S06_Carousel1({ active }: { active: boolean }) {
 
 function SlideTransition({ active }: { active: boolean }) {
   const t = useT()
-  const v = useStagger(active, 4, 600)
+  const v = useStagger(active, 5, 600)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.08" />
@@ -787,6 +787,13 @@ function SlideTransition({ active }: { active: boolean }) {
       </An>
       <An show={v[3]} delay={600} from="scale" className="mt-8">
         <Image src={LOGO_WHITE} alt="Humand" width={200} height={54} className="h-14 w-auto" />
+      </An>
+      <An show={v[4]} delay={800} className="mt-8">
+        <div className="flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-sm">
+          <kbd className="flex items-center justify-center rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-xs font-semibold text-white">←</kbd>
+          <span className="text-xs font-medium text-white/70 whitespace-nowrap">{t.navHint}</span>
+          <kbd className="flex items-center justify-center rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-xs font-semibold text-white">→</kbd>
+        </div>
       </An>
     </div>
   )
@@ -1198,7 +1205,7 @@ function SlideProximosResumen({ active }: { active: boolean }) {
 
 function SlideFuncionalidadesIA({ active }: { active: boolean }) {
   const t = useT()
-  const v = useStagger(active, 4, 600)
+  const v = useStagger(active, 5, 600)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.08" />
@@ -1244,6 +1251,13 @@ function SlideFuncionalidadesIA({ active }: { active: boolean }) {
       <An show={v[3]} delay={600} className="mt-8">
         <div className="h-1 w-16 rounded-full bg-white/30" />
       </An>
+      <An show={v[4]} delay={800} className="mt-8">
+        <div className="flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-sm">
+          <kbd className="flex items-center justify-center rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-xs font-semibold text-white">←</kbd>
+          <span className="text-xs font-medium text-white/70 whitespace-nowrap">{t.navHint}</span>
+          <kbd className="flex items-center justify-center rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-xs font-semibold text-white">→</kbd>
+        </div>
+      </An>
     </div>
   )
 }
@@ -1285,7 +1299,7 @@ function S_ResumenObjetivosIA({ active }: { active: boolean }) {
 
 function SlideOtrosLanzamientos({ active }: { active: boolean }) {
   const t = useT()
-  const v = useStagger(active, 4, 600)
+  const v = useStagger(active, 5, 600)
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.08" />
@@ -1310,6 +1324,13 @@ function SlideOtrosLanzamientos({ active }: { active: boolean }) {
       </An>
       <An show={v[3]} delay={600} from="scale" className="mt-8">
         <Image src={LOGO_WHITE} alt="Humand" width={200} height={54} className="h-14 w-auto" />
+      </An>
+      <An show={v[4]} delay={800} className="mt-8">
+        <div className="flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-sm">
+          <kbd className="flex items-center justify-center rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-xs font-semibold text-white">←</kbd>
+          <span className="text-xs font-medium text-white/70 whitespace-nowrap">{t.navHint}</span>
+          <kbd className="flex items-center justify-center rounded border border-white/30 bg-white/15 px-1.5 py-0.5 text-xs font-semibold text-white">→</kbd>
+        </div>
       </An>
     </div>
   )
