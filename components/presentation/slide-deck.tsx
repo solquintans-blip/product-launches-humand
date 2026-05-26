@@ -791,7 +791,9 @@ function SlideTransition({ active }: { active: boolean }) {
 
 function S07_Sammy({ active }: { active: boolean }) {
   const t = useT()
+  const lang = useLang()
   const v = useStagger(active, 2)
+  const videoSrc = lang === 'en' ? '/sammy-en.mp4' : lang === 'pt' ? '/sammy-pt.mp4' : '/sammy.mp4'
   return (
     <div className="relative flex h-full flex-col items-center justify-center overflow-hidden px-8 text-center" style={{ background: "linear-gradient(180deg, #213478 0%, #2a4499 45%, #ffffff 100%)" }}>
       <DotGrid opacity="0.06" />
@@ -809,7 +811,7 @@ function S07_Sammy({ active }: { active: boolean }) {
               muted
               playsInline
               className="w-full h-full object-cover"
-              src="/sammy.mp4"
+              src={videoSrc}
             />
           )}
         </div>
