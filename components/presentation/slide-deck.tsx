@@ -1128,7 +1128,7 @@ function SlideProximosResumen({ active }: { active: boolean }) {
   const FeatureCard = ({ item }: { item: typeof features[0] }) => (
     <div className="shrink-0 w-[180px] rounded-2xl overflow-hidden border border-white/20" style={{ background: "rgba(255,255,255,0.09)" }}>
       {item.img ? (
-        <Image src={item.img} alt={item.title} width={180} height={112} className="w-full h-[112px] object-cover" />
+        <Image src={item.img} alt={item.title} width={180} height={112} className="w-full h-auto block" />
       ) : (
         <div className="h-[112px]" style={{ background: "linear-gradient(135deg, #1a2d6b 0%, #3d52b0 100%)" }} />
       )}
