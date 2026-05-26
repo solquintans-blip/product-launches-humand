@@ -1056,7 +1056,7 @@ function S_Themes({ active }: { active: boolean }) {
         </h2>
       </An>
       <An show={v[1]} delay={280} className="mt-4 w-full max-w-2xl">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10.5" }}>
+        <div className="relative w-full overflow-hidden rounded-xl bg-[#eef0f8]" style={{ aspectRatio: "16/10.5" }}>
           {lang === "es" && active && (
             <ResponsiveIframe
               src="/theme-animation.html"
@@ -1066,10 +1066,10 @@ function S_Themes({ active }: { active: boolean }) {
             />
           )}
           {lang === "pt" && (
-            <Image src="/theme-pt.png" alt="Themes PT" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/theme-pt.png" alt="Themes PT" fill style={{ objectFit: "contain", objectPosition: "center" }} />
           )}
           {lang === "en" && (
-            <Image src="/theme-en.png" alt="Themes EN" width={820} height={540} className="w-full h-auto block rounded-xl" />
+            <Image src="/theme-en.png" alt="Themes EN" fill style={{ objectFit: "contain", objectPosition: "center" }} />
           )}
         </div>
       </An>
